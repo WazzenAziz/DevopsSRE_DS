@@ -1,6 +1,9 @@
 name: DSPipeline
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   DockerBuildPublish:
@@ -20,6 +23,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
