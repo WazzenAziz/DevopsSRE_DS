@@ -1,0 +1,23 @@
+name: DSPipeline
+
+on:
+  push:
+    branches: ['main']
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+jobs:
+  abdallah:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      pull-requests: write
+    steps:
+      - name: verification
+        uses: actions/checkout@v3
+        with:
+            submodules: true  
+            fetch-depth: 0 
+      - name: Log in to the Container registry
+        uses: dock
